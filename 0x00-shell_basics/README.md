@@ -5,3 +5,5 @@
 2-bring_me_home: Script that changes the working directory to the user’s home directory.
 
 3-listfiles: Displays current directory contents in a long format.
+
+4-listmorefiles: Displays current directory contents, including hidden files (starting with .).
