@@ -1,2 +1,0 @@
-#!/bin/bash
-printf $((water#WATER+stir#STIR))
