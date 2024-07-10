@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#Configures SSH configuration file for the local SSH client, removes need for password.
+cat <<EOL >> ~/.ssh/config
+Host 34.232.68.234
+  IdentityFile ~/.ssh/school
+  PasswordAuthentication no
+EOL
