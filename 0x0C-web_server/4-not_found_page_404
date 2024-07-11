@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#Configures Nginx server so that /redirect_me is redirecting to another page.
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo echo 'Hello World!' | sudo tee /var/www/html/index.html
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_404.html
+sudo sed -i '48i\\n\	error_page 404 /error_404.html;\n' /etc/nginx/sites-available/default
+sudo service nginx restart

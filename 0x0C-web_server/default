@@ -1,0 +1,18 @@
+#llkkhj;lkjhghjklkjhgfghj
+
+server {
+
+	listen 80 default_server;
+	error_page 404 /error_404.html;
+	listen [::]:80 default_server;
+
+	error_page 404 /error_404.html;
+
+
+	error_page 404 /error_404.html;\n
+
+	location = /error_404.html {
+        internal;
+    }
+
+}
