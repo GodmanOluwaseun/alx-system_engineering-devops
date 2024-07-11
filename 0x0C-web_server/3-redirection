@@ -4,4 +4,5 @@ sudo apt-get update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 sudo echo 'Hello World!' | sudo tee /var/www/html/index.html
-echo 'location /redirect_me { return 301 https://intranet.alxswe.com; }' | sudo tee -a /etc/nginx/sites-available/default && sudo service nginx restart
+echo 'location /redirect_me { return 301 https://intranet.alxswe.com; }' | sudo tee -a /etc/nginx/sites-available/default
+sudo service nginx restart
