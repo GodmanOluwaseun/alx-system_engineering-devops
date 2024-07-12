@@ -6,7 +6,7 @@ file_line { 'Set private key':
   match => '^IdentityFile',
 }
 
-file_line { 'Set password check off'.:
+file_line { 'Set password check off':
   path => '/etc/ssh/ssh_config',
   line => 'PasswordAuthentication no',
   match => '^PasswordAuthentication',
