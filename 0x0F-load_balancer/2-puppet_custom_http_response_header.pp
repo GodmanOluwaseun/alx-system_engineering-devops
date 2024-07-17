@@ -10,7 +10,7 @@ package { 'nginx':
 }
 
 file { '/var/www/html/index.html':
-  content => "Hello World!',
+  content => 'Hello World!',
   require => Package['nginx']
 }
 
@@ -25,10 +25,11 @@ file_line { 'add_http_header':
   path => '/etc/nginx/sites-available/default',
   after => 'location / {',
   line  => 'add_header X-Served-By $hostname;'
+  require => Package['nginx'],
 }
 
 service { 'nginx':
   ensure => running,
   enable => true,
-  require => Exec['redirect_me']
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
