@@ -29,7 +29,7 @@ file_line { 'add_http_header':
 }
 
 service { 'nginx':
-  ensure => running,
-  enable => true,
+  ensure => 'running,'
+  enable => 'true',
   subscribe => File['/etc/nginx/sites-available/default'],
 }
