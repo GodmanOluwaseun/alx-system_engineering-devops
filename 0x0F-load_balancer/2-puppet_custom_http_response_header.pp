@@ -2,7 +2,6 @@
 
 exec { 'system_update':
   command => '/usr/bin/apt-get update',
-  path    => ['/usr/bin', '/bin', '/usr/sbin', '/sbin'],
 }
 
 package { 'nginx':
@@ -10,18 +9,27 @@ package { 'nginx':
   require  => Exec['system_update'],
 }
 
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+  require => Package['nginx'],
+}
+
+exec { 'redirect_me':
+  command  => "sed -i '/listen 80 default_server/a \\\\trewrite ^/redirect_me https://intranet.alxswe.com/ permanent;' /etc/nginx/sites-available/default",
+  provider => 'shell',
+  require  => Package['nginx'],
+}
+
 file_line { 'add_http_header':
   ensure  => present,
   path    => '/etc/nginx/sites-available/default',
   after   => 'location / {',
-  line    => 'add_header X-Served-By $hostname;',
+  line    => 'add_header X-Served-By \$hostname;',
   require => Package['nginx'],
-  notify  => Service['nginx'],
 }
 
 service { 'nginx':
   ensure    => running,
   enable    => true,
-  require   => Package['nginx'],
-  subscribe => File_line['add_http_header'],
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
