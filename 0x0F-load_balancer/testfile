@@ -1,0 +1,10 @@
+other
+
+	tests
+	locate
+
+	location / {
+	add_header X-Served-By 58e60c4728e3;
+	add_header X-Served-By '58e60c4728e3';
+	add_header X-Served-By $SERVER_NAME;
+	add_header X-Served-By "$SERVER_NAME";

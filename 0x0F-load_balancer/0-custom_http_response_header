@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#Configures server to include custom header{server name) in response.
+SERVER_NAME=$(hostname)
+sudo sed -i "/location \/ {/a \	add_header X-Served-By $SERVER_NAME;" /etc/nginx/sites-available/default
+sudo service nginx restart
