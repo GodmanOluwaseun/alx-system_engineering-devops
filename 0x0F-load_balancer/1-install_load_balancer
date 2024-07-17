@@ -2,6 +2,18 @@
 #Configures new load balancer on ubuntu server.
 sudo apt-get update
 sudo apt-get -y install haproxy
-sudo sed -i '/backend http_back/a \	balance roundrobin\n	server server1 34.232.68.234 check\n	server server2 35.168.8.251 check' /etc/haproxy/haproxy.cfg
+
+sudo bash -c 'cat <<EOF >> /etc/haproxy/haproxy.cfg
+
+frontend http_front
+	bind *:80
+	default_backend http_back
+
+backend http_back
+	balance roundrobin
+	server 430320-web-01 34.232.68.234:80 check
+	server 430320-web-02 35.168.8.251:80 check
+EOF'
+
 sudo systemctl enable haproxy
 sudo systemctl start haproxy
