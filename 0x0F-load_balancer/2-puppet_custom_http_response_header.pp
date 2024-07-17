@@ -24,7 +24,7 @@ file_line { 'add_http_header':
   ensure => present,
   path => '/etc/nginx/sites-available/default',
   after => 'location / {',
-  line  => 'add_header X-Served-By $hostname;',
+  line  => 'add_header X-Served-By \$hostname;',
   require => Package['nginx'],
 }
 
