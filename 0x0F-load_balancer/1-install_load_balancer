@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#Configures new load balancer on ubuntu server.
+sudo apt-get update
+sudo apt-get -y install haproxy
+sudo sed -i '/backend http_back/a \	balance roundrobin\n	server server1 34.232.68.234 check\n	server server2 35.168.8.251 check' /etc/haproxy/haproxy.cfg
+sudo systemctl enable haproxy
+sudo systemctl start haproxy

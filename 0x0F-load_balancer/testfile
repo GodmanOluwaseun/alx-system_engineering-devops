@@ -8,3 +8,11 @@ other
 	add_header X-Served-By '58e60c4728e3';
 	add_header X-Served-By $SERVER_NAME;
 	add_header X-Served-By "$SERVER_NAME";
+
+	backend http_back
+	balance roundrobin
+	server server1 34.232.68.234 check
+	server server2 35.168.8.251 check
+  balance roundrobin
+    server server1 34.232.68.234 check
+    server server2 35.168.8.251 check
