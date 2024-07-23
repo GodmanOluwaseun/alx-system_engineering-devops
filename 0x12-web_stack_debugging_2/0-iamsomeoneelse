@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#Runs whoami command as another user.
+
+if [ "$#" -ne 1 ]; then
+    echo "USAGE: Add username as argument"
+    exit 1
+fi
+
+sudo -u "$1" whoami
