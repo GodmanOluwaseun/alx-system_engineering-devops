@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Configure server to run Nginx as user nginx
+#Configure server to run Nginx as user nginx.
 
 if ! id -u nginx > /dev/null 2>&1; then
     sudo useradd -r -s /bin/false nginx
