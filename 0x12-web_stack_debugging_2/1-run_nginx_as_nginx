@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 #Configure server to run Nginx as user nginx
 
-if [[ $EUID -ne 0 ]]; then
-    echo "1-run_nginx_as_nginx must be run as root"
-    exit 1
+if ! id -u nginx > /dev/null 2>&1; then
+    useradd -r -s /bin/false nginx
 fi
 
-sed -i 's/user .*/user nginx;/' /etc/nginx/nginx.conf
-sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
-sed -i 's/listen \[::\]:80 default_server;/listen \[::\]:8080 default_server;/' /etc/nginx/sites-available/default
-systemctl restart nginx
+sudo sed -i 's/user .*/user nginx;/' /etc/nginx/nginx.conf
+sudo sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+sudo chmod 644 /etc/nginx/nginx.conf
+sudo systemctl restart nginx
