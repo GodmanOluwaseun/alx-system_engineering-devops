@@ -18,7 +18,7 @@ def export_employee(employee_id):
 
     user_response = requests.get(user_url)
     employee_data = user_response.json()
-    name = employee_data.get('name')
+    name = employee_data.get('username')
 
     user_todo = requests.get(todos)
     todo_data = user_todo.json()
@@ -32,6 +32,6 @@ def export_employee(employee_id):
 
 
 if __name__ == "__main__":
-    employee_id = sys.argv[1]
+    employee_id = int(sys.argv[1])
 
     export_employee(employee_id)
