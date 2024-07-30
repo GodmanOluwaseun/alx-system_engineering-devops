@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-"""2-export_to_JSON
-Export data from an API to json file.
+"""3-dictionary_of_list_of_dictionaries
+Export all user data from an API to json file.
 """
 
 
@@ -11,10 +11,10 @@ import sys
 
 
 def export_employees():
-    """Retrieves employess details & exports to json"""
+    """Retrieves all employess details & exports to json"""
 
     user_url = "https://jsonplaceholder.typicode.com/users"
-    todos = "https://jsonplaceholder.typicode.com/users/todos"
+    todos = "https://jsonplaceholder.typicode.com/todos"
 
     user_response = requests.get(user_url)
     employee_data = user_response.json()
@@ -40,7 +40,7 @@ def export_employees():
 
         tasks_dict[str(user_id)] = task_list
 
-    with open(f"{user_id}.json", 'w') as file:
+    with open("todo_all_employees.json", 'w') as file:
         json.dump(tasks_dict, file)
 
 
