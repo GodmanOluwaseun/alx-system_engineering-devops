@@ -18,7 +18,7 @@ def print_employee(employee_id):
     user_response = requests.get(user_url)
     employee_data = user_response.json()
     name = employee_data.get('name')
-    
+
     user_todo = requests.get(todos)
     todo_data = user_todo.json()
     todo_total = len(todo_data)
@@ -28,6 +28,7 @@ def print_employee(employee_id):
     print(f"Employee {name} is done with tasks({done_task}/{todo_total}):")
     for task in completed:
         print(f"\t {task.get('title')}")
+
 
 if __name__ == "__main__":
     employee_id = int(sys.argv[1])
