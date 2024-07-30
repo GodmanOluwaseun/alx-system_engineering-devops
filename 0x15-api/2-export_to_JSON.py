@@ -40,5 +40,5 @@ def export_employee(employee_id):
 
 
 if __name__ == "__main__":
-    employee_id = (sys.argv[1]
+    employee_id = sys.argv[1]
     export_employee(employee_id)
