@@ -13,13 +13,13 @@ def print_employee(employee_id):
     """Retrieves employess details & prints in specified manner"""
 
     user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    user_todo = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    todos = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
 
     user_response = requests.get(user_url)
     employee_data = user_response.json()
     name = employee_data.get('name')
     
-    user_todo = requests.get(user_todo)
+    user_todo = requests.get(todos)
     todo_data = user_todo.json()
     todo_total = len(todo_data)
     completed = [task for task in todo_data if task.get('completed')]
