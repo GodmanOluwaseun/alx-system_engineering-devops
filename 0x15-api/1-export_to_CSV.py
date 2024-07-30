@@ -5,12 +5,12 @@ Gather data from an API.
 """
 
 
+import csv
 import requests
 import sys
-import csv
 
 
-def print_employee(employee_id):
+def export_employee(employee_id):
     """Retrieves employess details & prints in specified manner"""
 
     user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
@@ -24,7 +24,7 @@ def print_employee(employee_id):
     todo_data = user_todo.json()
 
     with open(f"{employee_id}.csv", 'w', newline="") as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, quotechar='"', quoting=csv.QUOTE_ALL)
 
         for task in todo_data:
             row = [employee_id, name, task.get('completed'), task.get('title')]
@@ -34,4 +34,4 @@ def print_employee(employee_id):
 if __name__ == "__main__":
     employee_id = int(sys.argv[1])
 
-    print_employee(employee_id)
+    export_employee(employee_id)
