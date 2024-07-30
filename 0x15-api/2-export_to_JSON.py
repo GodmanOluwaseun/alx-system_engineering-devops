@@ -23,7 +23,6 @@ def export_employee(employee_id):
     user_todo = requests.get(todos)
     todo_data = user_todo.json()
 
-
     task_list = []
     for task in todo_data:
         tasks = {
