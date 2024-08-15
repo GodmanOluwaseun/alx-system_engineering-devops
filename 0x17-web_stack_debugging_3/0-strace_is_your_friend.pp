@@ -1,6 +1,6 @@
-# Fixes bad `phpp` extensions to `php` in the WordPress file `wp-settings.php`.
+# Debug and fix Apache server returning error 500, correct php typo.
 
-exec { 'fix-wordpress':
-  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
-  path    => '/usr/local/bin/:/bin/'
+exec { 'wordpress_fix':
+  command => 'sed -i "s/phpp/php/g" /var/www/html/wp-settings.php',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 }
