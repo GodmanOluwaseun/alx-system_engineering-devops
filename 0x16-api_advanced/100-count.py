@@ -4,8 +4,8 @@
 Queries Reddit API, returns count of keywords in titles of all hot articles.
 """
 
-import requests
 from collections import Counter
+import requests
 
 
 def count_words(subreddit, word_list, after=None, counts=None):
